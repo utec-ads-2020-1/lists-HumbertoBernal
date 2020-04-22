@@ -10,16 +10,29 @@ class ForwardIterator {
         Node<T> *current;
 
     public:
-        ForwardIterator();
-        ForwardIterator(Node<T>*);
+        ForwardIterator(){
+            current = new Node<T>;
+        };
 
-        ForwardIterator<T> operator=(ForwardIterator<T>);
+        ForwardIterator(Node<T>* temp){
+            current = temp;
+        };
 
-        bool operator!=(ForwardIterator<T>);
+        ForwardIterator<T> operator=(ForwardIterator<T> temp){
+            this->current = temp.current;
+        };
 
-        ForwardIterator<T> operator++();
+        bool operator!=(ForwardIterator<T> temp){
+            return  temp.current != this->current;
+        };
 
-        T operator*();
+        ForwardIterator<T> operator++(){
+            this->current = this->current->next;
+        };
+
+        T operator*(){
+            return this->current->data;
+        };
 };
 
 #endif
