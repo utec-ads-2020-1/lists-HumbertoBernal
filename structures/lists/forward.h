@@ -48,9 +48,9 @@ class ForwardList : public List<T> {
             temp = temp->next;
             temp->data = value;
             temp->next = nullptr;
-            this->nodes++;
             this->tail = temp;
             if(this->nodes == 0){this->head = temp;}
+            this->nodes++;
             temp = nullptr;
             delete temp;
         };

@@ -25,7 +25,7 @@ class ForwardIterator {
         };
 
         bool operator!=(ForwardIterator<T> temp){
-            return temp.operator*() == current->data;
+            return temp.operator*() != current->data;
         };
 
         ForwardIterator<T> operator++(){
