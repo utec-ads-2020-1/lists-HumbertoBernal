@@ -127,6 +127,15 @@ class ForwardList : public List<T> {
             this->pop_front();
         };
 
+        void swapL(Node<T>* A, Node<T>* B){
+            auto* temp2 = new Node<T>;
+            temp2->data = A->data;
+            A->data = B->data;
+            B->data = temp2->data;
+            temp2 = nullptr;
+            delete temp2;
+        };
+
         void sort(){
             if (this->nodes > 1){
                 Node<T> *temp;
@@ -135,12 +144,7 @@ class ForwardList : public List<T> {
                     temp->next = this->head->next;
                     for (int j = 0; j < this->nodes-i-1 ; ++j) {
                         if(temp->data > temp->next->data){
-                            auto* temp2 = new Node<T>;
-                            temp2->data = temp->data;
-                            temp->data = temp->next->data;
-                            temp->next->data = temp2->data;
-                            temp2 = nullptr;
-                            delete temp2;
+                            this->swapL(temp, temp->next);
                         }
                         temp = temp->next;
                     }
