@@ -10,11 +10,9 @@ class BidirectionalIterator {
         Node<T> *current;
 
     public:
-        BidirectionalIterator(){
-            current = new Node<T>;
-        };
-        BidirectionalIterator(Node<T>* temp){
-            current = new Node<T>;
+        BidirectionalIterator()= default;
+
+        explicit BidirectionalIterator(Node<T>* temp){
             current = temp;
         };
 

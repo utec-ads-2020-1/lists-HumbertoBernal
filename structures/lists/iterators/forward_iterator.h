@@ -10,12 +10,9 @@ class ForwardIterator {
         Node<T> *current;
 
     public:
-        ForwardIterator(){
-            current = new Node<T>;
-        };
+        ForwardIterator()= default;
 
-        ForwardIterator(Node<T>* temp){
-            current = new Node<T>;
+        explicit ForwardIterator(Node<T>* temp){
             current = temp;
         };
 
