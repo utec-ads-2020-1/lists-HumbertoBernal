@@ -17,8 +17,8 @@ class BidirectionalIterator {
         };
 
         BidirectionalIterator<T> operator=(BidirectionalIterator<T> temp){
-            BidirectionalIterator<T> temp2(temp.current);
-            return temp2;
+            this->current = temp.current;
+            return temp;
         };
 
         bool operator!=(BidirectionalIterator<T> temp){

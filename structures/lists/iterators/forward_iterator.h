@@ -17,8 +17,8 @@ class ForwardIterator {
         };
 
         ForwardIterator<T> operator=(ForwardIterator<T>* temp){
-            ForwardIterator<T> temp2(temp->current);
-            return temp2;
+            this->current = temp->current;
+            return temp;
         };
 
         bool operator!=(ForwardIterator<T> temp){
