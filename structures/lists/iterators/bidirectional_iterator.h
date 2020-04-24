@@ -24,17 +24,19 @@ class BidirectionalIterator {
         };
 
         bool operator!=(BidirectionalIterator<T> temp){
-            return temp.operator*() != current->data;
+            if(temp.current == nullptr or this->current == nullptr){
+                return temp.current != this->current;
+            }else{
+                return *temp != current->data;
+            }
         };
 
-        BidirectionalIterator<T> operator++(){
-            BidirectionalIterator<T> temp(this->current->next);
-            return temp;
+        void operator++(){
+            current = current->next;
         };
 
-        BidirectionalIterator<T> operator--(){
-            BidirectionalIterator<T> temp(this->current->prev);
-            return temp;
+        void operator--(){
+            current = current->prev;
         };
 
         T operator*(){

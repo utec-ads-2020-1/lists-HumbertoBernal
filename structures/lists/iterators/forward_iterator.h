@@ -25,13 +25,16 @@ class ForwardIterator {
         };
 
         bool operator!=(ForwardIterator<T> temp){
-            return temp.operator*() != current->data;
+            if(temp.current == nullptr or this->current == nullptr){
+                return temp.current != this->current;
+            }else{
+                return *temp != current->data;
+            }
         };
 
-        ForwardIterator<T> operator++(){
-            ForwardIterator<T> temp(this->current->next);
-            return temp;
-        };
+        void operator++(){
+            current = current->next;
+            };
 
         T operator*(){
             return current->data;
