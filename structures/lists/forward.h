@@ -123,9 +123,8 @@ class ForwardList : public List<T> {
                 while (this->head != this->tail){
                     this->pop_front();
                 }
-                this->pop_front();
             }
-
+            this->pop_front();
         };
 
         void sort(){
