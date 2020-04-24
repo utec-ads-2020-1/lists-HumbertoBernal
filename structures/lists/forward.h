@@ -7,205 +7,197 @@
 // TODO: Implement all methods
 template <typename T>
 class ForwardList : public List<T> {
-public:
-    ForwardList() : List<T>() {}
+    public:
+        ForwardList() : List<T>() {}
 
-    T front(){
-        if (this->nodes != 0){
-            return this->head->data;
-        }else{
-            cout << "There is no front, the ForwardList is empty";
-            throw exception();
-        }
-    };
+        T front(){
+            if (this->nodes != 0){
+                return this->head->data;
+            }else{
+                cout << "There is no front, the ForwardList is empty";
+                throw exception();
+            }
+        };
 
-    T back(){
-        if (this->nodes != 0){
-            return this->tail->data;
-        }else{
-            cout << "There is no back, the ForwardList is empty";
-            throw exception();
-        }
-    };
+        T back(){
+            if (this->nodes != 0){
+                return this->tail->data;
+            }else{
+                cout << "There is no back, the ForwardList is empty";
+                throw exception();
+            }
+        };
 
-    void push_front(T value){
-        auto* temp = new Node<T>;
-        temp->next = this->head;
-        temp->data = value;
-        this->head = temp;
-        if(this->nodes == 0){this->tail = temp;}
-        this->nodes++;
-        temp = nullptr;
-        delete temp;
-        this->head->prev = nullptr;
-    };
-
-    void push_back(T value){
-        auto* temp = new Node<T>;
-        temp->data = value;
-        if(this->nodes == 0){
+        void push_front(T value){
+            auto* temp = new Node<T>;
+            temp->next = this->head;
             temp->data = value;
-            temp->next = nullptr;
-
             this->head = temp;
-            this->tail = temp;
-
-        }else{
-            temp->next = this->tail->next;
-            this->tail->next = temp;
-            this->tail = temp;
-        }
-        this->nodes++;
-        temp = nullptr;
-        delete temp;
-    };
-
-    void pop_front(){
-        if(this->nodes == 0 ){
-            cout << "Can't pop front, the ForwardList is empty"<<endl;
-            throw exception();
-        }else if(this->nodes == 1){
-            this->head->killSelf();
-            this->head = nullptr;
-            this->tail = nullptr;
-        }else{
-            Node<T>* temp = this->head;
-            this->head = temp->next;
-            temp->killSelf();
+            if(this->nodes == 0){this->tail = temp;}
+            this->nodes++;
             temp = nullptr;
             delete temp;
-        }
-        this->nodes--;
-    };
+            this->head->prev = nullptr;
+        };
 
-    void pop_back(){
-        if(this->nodes == 0 ){
-            cout << "Can't pop back, the ForwardList is empty"<<endl;
-            throw exception();
-        }else if(this->nodes == 1){
-            this->tail->killSelf();
-            this->head = nullptr;
-            this->tail = nullptr;
-        }else{
-            Node<T>* temp = this->head;
-            while(temp->next->next != nullptr){temp = temp->next;}
-            temp -> next = nullptr;
-            this->tail->killSelf();
-            this->tail = temp;
-        }
-        this->nodes--;
-    };
+        void push_back(T value){
+            auto* temp = new Node<T>;
+            temp->data = value;
+            if(this->nodes == 0){
+                temp->data = value;
+                temp->next = nullptr;
 
-    T operator[](int position){
-        if((position < 1) or (position > this->nodes)){
-            cout << "La posición es invalida";
-            throw exception();
-        }else if(position == 1){
-            return this->head->data;
-        }else{
-            Node<T>* temp = this->head;
-            for (int i = 0; i < position-1; ++i){
-                temp = temp->next;
+                this->head = temp;
+                this->tail = temp;
+
+            }else{
+                temp->next = this->tail->next;
+                this->tail->next = temp;
+                this->tail = temp;
             }
-            return temp->data;
-        }
-    };
+            this->nodes++;
+            temp = nullptr;
+            delete temp;
+        };
 
-    bool empty(){
-        return this->nodes == 0;
-    };
+        void pop_front(){
+            if(this->nodes == 0 ){
+                cout << "Can't pop front, the ForwardList is empty"<<endl;
+                throw exception();
+            }else if(this->nodes == 1){
+                this->head->killSelf();
+                this->head = nullptr;
+                this->tail = nullptr;
+            }else{
+                Node<T>* temp = this->head;
+                this->head = temp->next;
+                temp->killSelf();
+                temp = nullptr;
+                delete temp;
+            }
+            this->nodes--;
+        };
 
-    int size(){
-        return this->nodes;
-    };
+        void pop_back(){
+            if(this->nodes == 0 ){
+                cout << "Can't pop back, the ForwardList is empty"<<endl;
+                throw exception();
+            }else if(this->nodes == 1){
+                this->tail->killSelf();
+                this->head = nullptr;
+                this->tail = nullptr;
+            }else{
+                Node<T>* temp = this->head;
+                while(temp->next->next != nullptr){temp = temp->next;}
+                temp -> next = nullptr;
+                this->tail->killSelf();
+                this->tail = temp;
+            }
+            this->nodes--;
+        };
 
-    void clear(){
-        if(this->nodes > 1){
-            while (this->head != this->tail){
+        T operator[](int position){
+            if((position < 1) or (position > this->nodes)){
+                throw "La posición es invalida";
+            }else if(position == 1){
+                return this->head->data;
+            }else{
+                Node<T>* temp = this->head;
+                for (int i = 0; i < position-1; ++i){
+                    temp = temp->next;
+                }
+                return temp->data;
+            }
+        };
+
+        bool empty(){
+            return this->nodes == 0;
+        };
+
+        int size(){
+            return this->nodes;
+        };
+
+        void clear(){
+            if(this->nodes > 1){
+                while (this->head != this->tail){
+                    this->pop_front();
+                }
                 this->pop_front();
             }
-            this->pop_front();
-        }
 
-    };
+        };
 
-    void sort(){
-        if (!this->head){
-            cout << "The list is empty, there is nothing to sort";
-            throw exception();
-        }else if(this->nodes == 1){
-            return;
-        }else{
-            Node<T> *temp;
-            for (int i = 0; i < this->nodes-1 ; ++i) {
-                temp = this->head;
-                temp->next = this->head->next;
-                for (int j = 0; j < this->nodes-i-1 ; ++j) {
-                    if(temp->data > temp->next->data){
+        void sort(){
+            if (this->nodes > 1){
+                Node<T> *temp;
+                for (int i = 0; i < this->nodes-1 ; ++i) {
+                    temp = this->head;
+                    temp->next = this->head->next;
+                    for (int j = 0; j < this->nodes-i-1 ; ++j) {
+                        if(temp->data > temp->next->data){
+                            auto* temp2 = new Node<T>;
+                            temp2->data = temp->data;
+                            temp->data = temp->next->data;
+                            temp->next->data = temp2->data;
+                            temp2 = nullptr;
+                            delete temp2;
+                        }
+                        temp = temp->next;
+                    }
+                }
+                temp= nullptr;
+            }
+        };
+
+        void reverse(){
+            if(this->nodes > 1){
+                Node<T> *temp;
+                for (int i = 0; i < this->nodes-1 ; ++i) {
+                    temp = this->head;
+                    temp->next = this->head->next;
+                    for (int j = 0; j < this->nodes-i-1 ; ++j) {
                         auto* temp2 = new Node<T>;
                         temp2->data = temp->data;
                         temp->data = temp->next->data;
                         temp->next->data = temp2->data;
                         temp2 = nullptr;
                         delete temp2;
+                        temp = temp->next;
                     }
-                    temp = temp->next;
                 }
+                temp= nullptr;
             }
-            temp= nullptr;
-        }
-    };
+        };
 
-    void reverse(){
-        if(this->nodes == 0){
-            cout << "The list is empty";
-            throw exception();
-        }else{
-            Node<T> *temp;
-            for (int i = 0; i < this->nodes-1 ; ++i) {
-                temp = this->head;
-                temp->next = this->head->next;
-                for (int j = 0; j < this->nodes-i-1 ; ++j) {
-                    auto* temp2 = new Node<T>;
-                    temp2->data = temp->data;
-                    temp->data = temp->next->data;
-                    temp->next->data = temp2->data;
-                    temp2 = nullptr;
-                    delete temp2;
-                    temp = temp->next;
-                }
+        ForwardIterator<T> begin(){
+            ForwardIterator<T> temp(this->head);
+            return temp;
+        };
+        ForwardIterator<T> end(){
+            ForwardIterator<T> temp(this->tail->next);
+            return temp;
+        };
+
+        string name() {
+            return "Forward List";
+        }
+
+        void merge(ForwardList<T>& mergeList){
+
+            if(this->head == nullptr){
+                this->head= mergeList.head;
+            }else if(mergeList.head == nullptr){
+                return;
+            }else{
+                this->tail->next = mergeList.head;
             }
-            temp= nullptr;
-        }
-    };
-
-    ForwardIterator<T> begin(){
-        ForwardIterator<T> temp(this->head);
-        return temp;
-    };
-    ForwardIterator<T> end(){
-        ForwardIterator<T> temp(this->tail);
-        return temp;
-    };
-
-    string name() {
-        return "Forward List";
-    }
-    /**
-     * Merges x into the list by transferring all of its elements at their respective
-     * ordered positions into the container (both containers shall already be ordered).
-     *
-     * This effectively removes all the elements in x (which becomes empty), and inserts
-     * them into their ordered position within container (which expands in size by the number
-     * of elements transferred). The operation is performed without constructing nor destroying
-     * any element: they are transferred, no matter whether x is an lvalue or an rvalue,
-     * or whether the value_type supports move-construction or not.
-    */
-    void merge(ForwardList<T>& mergeList){
-        this->tail->next = mergeList.head;
-        this->tail = mergeList.tail;
-        this->nodes += mergeList.nodes;
-    };
+            this->tail = mergeList.tail;
+            this->nodes += mergeList.nodes;
+            mergeList.head = nullptr;
+            mergeList.tail = nullptr;
+            mergeList.nodes = 0;
+        };
 };
 
 #endif
