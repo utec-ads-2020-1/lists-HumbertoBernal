@@ -22,11 +22,7 @@ class ForwardIterator {
         };
 
         bool operator!=(ForwardIterator<T> temp){
-            if(temp.current == nullptr or this->current == nullptr){
-                return temp.current != this->current;
-            }else{
-                return *temp != current->data;
-            }
+            return temp.current != current;
         };
 
         ForwardIterator<T> operator++(){

@@ -22,11 +22,7 @@ class BidirectionalIterator {
         };
 
         bool operator!=(BidirectionalIterator<T> temp){
-            if(temp.current == nullptr or this->current == nullptr){
-                return temp.current != this->current;
-            }else{
-                return *temp != current->data;
-            }
+                return temp.current != current;
         };
 
         BidirectionalIterator<T> operator++(){
