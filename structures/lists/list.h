@@ -13,7 +13,12 @@ class List {
 
     public:
         List() : head(nullptr), tail(nullptr), nodes(0) {};
-        ~List();
+        ~List(){
+            head = nullptr;
+            tail = nullptr;
+            delete head;
+            delete tail;
+        };
 
         virtual T front() = 0;
         virtual T back() = 0;

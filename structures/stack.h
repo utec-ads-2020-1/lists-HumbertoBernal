@@ -1,27 +1,59 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <exception>
+#include <iostream>
+
 using namespace std;
 
-#define MAX 1000 
+#define MAX 1000
 
-// TODO: Implement all methods
 template <typename T>
 class stack {
-	T* data;
-	int top;
-	int capacity;
+    T* data;
+    int Top;
+    int capacity;
 
 public:
-	stack(int size = MAX);
-	~stack();   		
+    stack(int size = MAX){
+        data = new T(size);
+        capacity = size;
+        Top = 0;
+    };
 
-	void push(T);
-	int pop();
-	int top();
+    ~stack(){
+        data = nullptr;
+        delete [] data;
+    };
 
-	int size();
-	bool empty();
+    void push(T value){
+        if(capacity == Top){
+            throw "The stack is full";
+        } else{
+            if(size() != 0){data++;}
+            *data = value;
+        }
+        Top++;
+    };
+
+    void pop(){
+        data--;
+        Top--;
+    };
+
+    int top(){
+        return *data;
+    };
+
+    int size(){
+        return Top;
+    };
+
+    bool empty(){
+        return Top==0 ;
+    };
+
 };
+
 
 #endif

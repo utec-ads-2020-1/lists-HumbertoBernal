@@ -10,18 +10,38 @@ class BidirectionalIterator {
         Node<T> *current;
 
     public:
-        BidirectionalIterator();
-        BidirectionalIterator(Node<T>*);
+        BidirectionalIterator()= default;
 
-        BidirectionalIterator<T> operator=(BidirectionalIterator<T>);
+        explicit BidirectionalIterator(Node<T>* temp){
+            current = temp;
+        };
 
-        bool operator!=(BidirectionalIterator<T>);
+        BidirectionalIterator<T> operator=(BidirectionalIterator<T> temp){
+            this->current = temp.current;
+            return temp;
+        };
 
-        BidirectionalIterator<T> operator++();
+        bool operator!=(BidirectionalIterator<T> temp){
+            if(temp.current == nullptr or this->current == nullptr){
+                return temp.current != this->current;
+            }else{
+                return *temp != current->data;
+            }
+        };
 
-        BidirectionalIterator<T> operator--();
+        BidirectionalIterator<T> operator++(){
+            current = current->next;
+            return *this;
+        };
 
-        T operator*();
+        BidirectionalIterator<T> operator--(){
+            current = current->prev;
+            return *this;
+        };
+
+        T operator*(){
+            return current->data;
+        };
 };
 
 #endif
