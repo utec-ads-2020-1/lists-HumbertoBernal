@@ -18,7 +18,7 @@ class ForwardIterator {
 
         ForwardIterator<T> operator=(ForwardIterator<T>* temp){
             this->current = temp->current;
-            return temp;
+            return *this;
         };
 
         bool operator!=(ForwardIterator<T> temp){
@@ -29,9 +29,10 @@ class ForwardIterator {
             }
         };
 
-        void operator++(){
+        ForwardIterator<T> operator++(){
             current = current->next;
-            };
+            return *this;
+        };
 
         T operator*(){
             return current->data;

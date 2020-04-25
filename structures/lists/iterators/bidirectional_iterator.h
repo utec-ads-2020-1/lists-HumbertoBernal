@@ -29,12 +29,14 @@ class BidirectionalIterator {
             }
         };
 
-        void operator++(){
+        BidirectionalIterator<T> operator++(){
             current = current->next;
+            return *this;
         };
 
-        void operator--(){
+        BidirectionalIterator<T> operator--(){
             current = current->prev;
+            return *this;
         };
 
         T operator*(){

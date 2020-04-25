@@ -14,8 +14,7 @@ class LinkedList : public List<T> {
             if (this->nodes != 0){
                 return this->head->data;
             }else{
-                cout << "There is no front, the ForwardList is empty";
-                throw exception();
+                throw "There is no front, the ForwardList is empty";
             }
         };
 
@@ -23,8 +22,7 @@ class LinkedList : public List<T> {
             if (this->nodes != 0){
                 return this->tail->data;
             }else{
-                cout << "There is no back, the ForwardList is empty";
-                throw exception();
+                throw "There is no back, the ForwardList is empty";
             }
         };
 
@@ -94,9 +92,9 @@ class LinkedList : public List<T> {
         };
 
         T operator[](int position){
-            if((position < 1) or (position > this->nodes)){
-                cout << "La posición es invalida";
-                throw exception();
+            position +=1;
+            if( (position > this->nodes)){
+                throw "La posición es invalida";
             }else if(position == 1){
                 return this->head->data;
             }else if(position <= (this->size()+1)/2){

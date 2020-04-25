@@ -97,13 +97,13 @@ class ForwardList : public List<T> {
         };
 
         T operator[](int position){
-            if((position < 1) or (position > this->nodes)){
+            if((position > this->nodes)){
                 throw "La posición es invalida";
-            }else if(position == 1){
+            }else if(position == 0){
                 return this->head->data;
             }else{
                 Node<T>* temp = this->head;
-                for (int i = 0; i < position-1; ++i){
+                for (int i = 0; i < position; ++i){
                     temp = temp->next;
                 }
                 return temp->data;

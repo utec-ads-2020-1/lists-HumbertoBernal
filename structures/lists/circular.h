@@ -58,6 +58,7 @@ class CircularLinkedList : public List<T> {
                 this->tail->next = temp;
             }
             this->tail = temp;
+            this->head->prev = this->tail;
             this->nodes++;
             temp = nullptr;
             delete temp;
@@ -98,7 +99,8 @@ class CircularLinkedList : public List<T> {
         };
 
         T operator[](int position){
-            if((position < 1) or (position > this->nodes)){
+            position +=1;
+            if(position > this->nodes){
                 cout << "La posición es invalida";
                 throw exception();
             }else if(position == 1){
