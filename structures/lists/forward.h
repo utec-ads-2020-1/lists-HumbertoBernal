@@ -141,7 +141,6 @@ class ForwardList : public List<T> {
                         temp = temp->next;
                     }
                 }
-                temp= nullptr;
             }
         };
 
@@ -161,7 +160,6 @@ class ForwardList : public List<T> {
                         temp = temp->next;
                     }
                 }
-                temp= nullptr;
             }
         };
 

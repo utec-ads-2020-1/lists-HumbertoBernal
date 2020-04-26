@@ -148,7 +148,6 @@ class CircularLinkedList : public List<T> {
                         temp = temp->next;
                     }
                 }
-                temp= nullptr;
             }
         };
 
@@ -171,8 +170,6 @@ class CircularLinkedList : public List<T> {
                     temp = temp->next;
                     temp2 = temp2->prev;
                 }
-                temp= nullptr;
-                temp2= nullptr;
             }
         };
 

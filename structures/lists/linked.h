@@ -143,7 +143,6 @@ class LinkedList : public List<T> {
                         temp = temp->next;
                     }
                 }
-                temp= nullptr;
             }
         };
 
@@ -166,8 +165,6 @@ class LinkedList : public List<T> {
                     temp = temp->next;
                     temp2 = temp2->prev;
                 }
-                temp= nullptr;
-                temp2= nullptr;
             }
         };
 

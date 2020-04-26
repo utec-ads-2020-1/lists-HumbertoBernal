@@ -15,7 +15,7 @@ class queue {
     int capacity;
 
 public:
-    queue(int size = MAX){
+    explicit queue(int size = MAX){
         data = new T(size);
         capacity = size;
         top = 0;

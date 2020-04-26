@@ -15,7 +15,7 @@ class stack {
     int capacity;
 
 public:
-    stack(int size = MAX){
+    explicit stack(int size = MAX){
         data = new T(size);
         capacity = size;
         Top = 0;
