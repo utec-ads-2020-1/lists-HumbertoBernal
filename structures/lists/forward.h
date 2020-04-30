@@ -27,6 +27,7 @@ class ForwardList : public List<T> {
         };
 
         void push_front(T value){
+            // next no es setteado a nullptr
             auto* temp = new Node<T>;
             temp->next = this->head;
             temp->data = value;
@@ -66,6 +67,7 @@ class ForwardList : public List<T> {
             }else if(this->nodes != 0){
                 Node<T>* temp = this->head;
                 this->head = temp->next;
+                // Esto va a eliminar elementos que no debería
                 temp->killSelf();
                 temp = nullptr;
                 delete temp;

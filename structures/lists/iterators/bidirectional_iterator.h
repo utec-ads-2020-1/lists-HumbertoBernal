@@ -17,6 +17,7 @@ class BidirectionalIterator {
         };
 
         BidirectionalIterator<T> operator=(BidirectionalIterator<T> temp){
+            // Retornas el parámetro?
             this->current = temp.current;
             return temp;
         };
@@ -26,16 +27,19 @@ class BidirectionalIterator {
         };
 
         BidirectionalIterator<T> operator++(){
+            // Si current es null?
             current = current->next;
             return *this;
         };
 
         BidirectionalIterator<T> operator--(){
+            // Si current es null?
             current = current->prev;
             return *this;
         };
 
         T operator*(){
+            // Si current es null?
             return current->data;
         };
 };

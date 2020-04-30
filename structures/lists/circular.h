@@ -150,7 +150,8 @@ class CircularLinkedList : public List<T> {
                 }
             }
         };
-
+         
+        // Debería ser privado
         void swapL(Node<T>* A, Node<T>* B){
             auto* temp2 = new Node<T>;
             temp2->data = A->data;

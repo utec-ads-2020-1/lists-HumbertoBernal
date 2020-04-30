@@ -14,6 +14,7 @@ class List {
     public:
         List() : head(nullptr), tail(nullptr), nodes(0) {};
         ~List(){
+            // Así no es el destructor
             head = nullptr;
             tail = nullptr;
             delete head;

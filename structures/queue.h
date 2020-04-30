@@ -22,6 +22,7 @@ public:
     };
 
     ~queue(){
+        // No estás borrando de manera correcta, la data nunca se libera
         data = nullptr;
         delete [] data;
     };
